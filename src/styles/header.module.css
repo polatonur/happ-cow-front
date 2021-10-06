@@ -5,8 +5,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: bisque;
 }
 .logo img {
   height: 40px;
   width: 160px;
+}
+.nav_bar ul {
+  display: flex;
+}
+.nav_bar ul li {
+  margin-left: 20px;
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const SvgComponent = (props: any) => {
+const HeroDecoration = (props: any) => {
   return (
     <svg
       data-name="Cta layer"
@@ -17,4 +17,4 @@ const SvgComponent = (props: any) => {
   );
 };
 
-export default SvgComponent;
+export default HeroDecoration;
