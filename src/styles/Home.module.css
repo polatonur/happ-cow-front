@@ -1,0 +1,26 @@
+.home main .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title h1 {
+  font-family: "Nunito Bold";
+  color: #444444;
+}
+.title span {
+  display: flex;
+  align-items: center;
+  color: var(--main-purple);
+  font-family: "Nunito Bold";
+  cursor: pointer;
+  line-height: 24px;
+}
+.title span:hover {
+  text-decoration: underline;
+}
+.home main .restos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

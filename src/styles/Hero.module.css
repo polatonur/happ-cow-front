@@ -1,4 +1,5 @@
 .hero {
+  z-index: -2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,14 +7,18 @@
   width: 100%;
   height: 400px;
   background-image: url("../assets/img/hero.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .search {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 .title {
+  font-family: "Nunito Bold";
   text-align: center;
   color: #fff;
+  font-size: 36px;
 }
 .search_bar {
   margin: 0 auto;
@@ -43,7 +48,7 @@
   top: 0;
   right: 0;
   color: white;
-  background-color: #9069cc;
+  background-color: var(--main-purple);
 }
 .search_bar > span:hover {
   opacity: 0.7;
@@ -53,5 +58,6 @@
   height: 100px;
   position: absolute;
   right: 0;
+  z-index: -1;
   bottom: 0;
 }
