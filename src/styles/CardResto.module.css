@@ -9,6 +9,7 @@
   position: absolute;
 }
 .like {
+  z-index: 1;
   top: 8px;
   right: 8px;
   width: 48px;
@@ -25,12 +26,17 @@
 }
 .friend {
   left: -14px;
+  z-index: 1;
 }
 .photo {
   height: 176px;
   width: 100%;
   border-radius: 7px;
   background-color: var(--main-purple);
+}
+.photo img {
+  border-radius: 7px;
+  object-fit: cover;
 }
 .info .name {
   display: flex;
