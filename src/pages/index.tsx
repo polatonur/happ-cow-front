@@ -8,12 +8,6 @@ import { GetServerSideProps } from "next";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
 import CardResto from "../components/CardResto";
-const a = z.object({
-  a: z.string(),
-  b: z.number(),
-});
-const arr = z.string().array();
-const arr3 = a.array();
 
 const Restaurant = z.object({
   _id: z.string(),
@@ -29,14 +23,8 @@ const Restaurant = z.object({
   type: z.string(),
   category: z.number(),
   rating: z.number(),
-  vegan: z.number(),
-  vegOnly: z.number(),
-  link: z.string(),
   description: z.string(),
   pictures: z.array(z.string()),
-  price: z.string(),
-  website: z.string(),
-  facebook: z.string(),
   nearbyPlaces: z.array(z.string()),
 });
 const Data = Restaurant.array();

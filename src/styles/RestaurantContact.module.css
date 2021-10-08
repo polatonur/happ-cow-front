@@ -1,3 +1,9 @@
+.resto_contact_info {
+  display: flex;
+  padding-top: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
 .col_1 {
   width: 70%;
 }

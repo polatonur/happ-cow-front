@@ -1,12 +1,15 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
-
+import { Pencil } from "phosphor-react";
 import styles from "../../styles/Restaurant.module.css";
 import { Restaurant } from "../../pages/index";
 import Layout from "../../components/Layout";
 import RestaurantHeader from "../../components/RestaurantHeader";
 import RestaurantContact from "../../components/RestaurantContact";
-type NearRestos = Pick<
+import Carrousel from "../../components/Carrousel";
+import NearbyRestos from "../../components/NearbyRestos";
+
+export type NearRestos = Pick<
   Restaurant,
   "_id" | "address" | "name" | "thumbnail" | "type"
 >;
@@ -22,11 +25,20 @@ const RestaurantPage = ({ data }: Props) => {
         />
         <main className="container">
           <RestaurantContact
+            type={data.result.type}
             address={data.result.address}
             description={data.result.description}
             location={data.result.location}
             phone={data.result.phone}
           />
+          <div className={styles.add_review}>
+            <button>
+              {" "}
+              <Pencil size={30} color="#fff" /> Add Review
+            </button>
+          </div>
+          <Carrousel photos={data.result.pictures} />
+          <NearbyRestos nearbyList={data.near} />
         </main>
       </div>
     </Layout>

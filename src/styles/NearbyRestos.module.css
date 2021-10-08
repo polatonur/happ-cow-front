@@ -1,0 +1,41 @@
+.nearby_restos .carroussel {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.card {
+  height: 300px;
+  width: 270px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+.photo {
+  height: 176px;
+  width: 100%;
+  border-radius: 7px;
+  background-color: var(--main-purple);
+}
+.photo img {
+  border-radius: 7px;
+  object-fit: cover;
+  transition: ease 3s;
+}
+.info .name {
+  display: flex;
+  align-items: center;
+  color: var(--main-green);
+  font-size: 18px;
+  margin: 10px 0;
+}
+.info .name span {
+  margin-left: 5px;
+  font-family: "Nunito Bold";
+}
+.info .adress {
+  font-size: 14px;
+  color: #777777;
+  font-family: "Nunito Bold";
+  margin-bottom: 5px;
+}

@@ -12,9 +12,12 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
   const slug = name.toLowerCase().replace(/\s|'/g, "-").replace(/-+/g, "-");
 
   //create src  image uri
-  const imageUri = `https://www.happycow.net/img/category/category_${type
-    .toLowerCase()
-    .replace(/\s/g, "-")}.svg`;
+  const getImageUri = () => {
+    const imageUri = `https://www.happycow.net/img/category/category_${type
+      .toLowerCase()
+      .replace(/\s/g, "-")}.svg`;
+    return imageUri;
+  };
 
   // create reating stars
   const getRating = () => {
@@ -45,7 +48,7 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
           <h2>{name}</h2>
           <div className={styles.rating_and_type}>
             <span>
-              <Image src={imageUri} alt={type} width={20} height={20} />{" "}
+              <Image src={getImageUri()} alt={type} width={20} height={20} />{" "}
               <span className={styles.type}>{type}</span>
             </span>{" "}
             <span>{getRating()}</span>

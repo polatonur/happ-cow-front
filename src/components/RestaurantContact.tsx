@@ -1,9 +1,13 @@
 import { Clock, House, MapPin, Phone } from "phosphor-react";
-import Map from "./Map";
+// import Map from "./Map";
 import React from "react";
 import styles from "../styles/RestaurantContact.module.css";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("./Map"), { ssr: false });
 
 type Props = {
+  type: string;
   address: string;
   description: string;
   location: {
@@ -17,6 +21,7 @@ const RestaurantContact = ({
   description,
   location,
   phone,
+  type,
 }: Props) => {
   console.log(description);
 
@@ -74,7 +79,7 @@ const RestaurantContact = ({
         </div>
       </div>
       <div className={styles.col_2}>
-        <Map location={location} />
+        <Map location={location} type={type} />
       </div>
     </div>
   );

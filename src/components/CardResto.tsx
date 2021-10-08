@@ -1,12 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "../styles/CardResto.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import friend from "../assets/img/friend.svg";
 import Heart from "../assets/icon/Heart";
-import RatingStar from "../assets/icon/RatingStar";
-import RatingStarHalf from "../assets/icon/RatingStarHAlf";
-import EmpityStar from "../assets/icon/EmpityStar";
 import { Restaurant } from "../pages/index";
 import useRating from "../hooks/useRatings";
 
@@ -21,9 +19,12 @@ const CardResto = ({ restaurant }: Props) => {
     .replace(/-+/g, "-");
 
   //create src  image uri
-  const imageUri = `https://www.happycow.net/img/category/category_${restaurant.type
-    .toLowerCase()
-    .replace(/\s/g, "-")}.svg`;
+  const getImageUri = () => {
+    const imageUri = `https://www.happycow.net/img/category/category_${restaurant.type
+      .toLowerCase()
+      .replace(/\s/g, "-")}.svg`;
+    return imageUri;
+  };
 
   return (
     // eslint-disable-next-line @next/next/link-passhref
@@ -51,7 +52,7 @@ const CardResto = ({ restaurant }: Props) => {
 
         <div className={styles.info}>
           <div className={styles.name}>
-            <Image width={20} height={20} src={imageUri} alt="vegan"></Image>
+            <img height={30} width={30} src={getImageUri()} alt="vegan"></img>
             <span>{restaurant.name}</span>
           </div>
           <p className={styles.adress}>
