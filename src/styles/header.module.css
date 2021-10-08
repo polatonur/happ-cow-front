@@ -5,11 +5,17 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
   justify-content: space-between;
+  box-shadow: 0 0 5px grey;
 }
 .logo img {
   height: 40px;
   width: 160px;
+  cursor: pointer;
 }
 .nav_bar ul {
   display: flex;

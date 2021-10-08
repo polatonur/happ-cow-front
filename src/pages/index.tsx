@@ -5,7 +5,6 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import { InferGetServerSidePropsType } from "next";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
 import CardResto from "../components/CardResto";
@@ -47,7 +46,7 @@ export type Restaurant = z.infer<typeof Restaurant>;
 type Props = {
   data: Data;
 };
-const Home = ({ data }: Props) => {
+const HomePage = ({ data }: Props) => {
   console.log(data);
 
   return (
@@ -72,7 +71,7 @@ const Home = ({ data }: Props) => {
   );
 };
 
-export default Home;
+export default HomePage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log("1");

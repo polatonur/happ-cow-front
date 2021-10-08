@@ -1,4 +1,5 @@
 import React, { ReactChildren, ReactChild } from "react";
+import Footer from "./Footer";
 import Header from "./Header";
 
 interface Props {
@@ -9,6 +10,7 @@ const Layout = (props: Props) => {
     <div>
       <Header />
       <main>{props.children}</main>
+      <Footer />
     </div>
   );
 };
