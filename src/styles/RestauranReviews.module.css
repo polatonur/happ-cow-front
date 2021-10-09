@@ -1,0 +1,48 @@
+.reviews {
+  width: 770px;
+  padding-top: 100px;
+}
+.card {
+  border: 1px solid rgb(187, 184, 184);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.reviews h1 {
+  color: #444444;
+  margin-bottom: 40px;
+}
+.writer {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  height: 120px;
+  background-color: #fafafa;
+  border-bottom: 1px solid rgb(187, 184, 184);
+}
+
+.writer .avatar {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.avatar img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+.writer .name {
+  color: var(--main-purple);
+}
+.review {
+  padding: 20px;
+  color: #444444;
+}
+.review h4 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+.review p {
+  font-family: "Nunito";
+  font-size: 18px;
+  line-height: 24px;
+}

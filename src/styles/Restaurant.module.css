@@ -1,5 +1,6 @@
 .restaurant {
   min-height: calc(100vh - 110px);
+  padding-bottom: 50px;
 }
 
 .add_review button {

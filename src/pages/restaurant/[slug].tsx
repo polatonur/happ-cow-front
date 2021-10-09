@@ -8,10 +8,11 @@ import RestaurantHeader from "../../components/RestaurantHeader";
 import RestaurantContact from "../../components/RestaurantContact";
 import Carrousel from "../../components/Carrousel";
 import NearbyRestos from "../../components/NearbyRestos";
+import RestaurantReviews from "../../components/RestaurantReviews";
 
 export type NearRestos = Pick<
   Restaurant,
-  "_id" | "address" | "name" | "thumbnail" | "type"
+  "_id" | "address" | "name" | "thumbnail" | "type" | "rating"
 >;
 type Props = { data: { result: Restaurant; near: Array<NearRestos> } };
 const RestaurantPage = ({ data }: Props) => {
@@ -39,6 +40,7 @@ const RestaurantPage = ({ data }: Props) => {
           </div>
           <Carrousel photos={data.result.pictures} />
           <NearbyRestos nearbyList={data.near} />
+          <RestaurantReviews />
         </main>
       </div>
     </Layout>

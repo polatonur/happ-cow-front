@@ -30,7 +30,7 @@ const CardResto = ({ restaurant }: Props) => {
     // eslint-disable-next-line @next/next/link-passhref
     <Link
       href={{
-        pathname: `restaurant/${slug}`,
+        pathname: `/restaurant/${slug}`,
         query: { id: restaurant._id },
       }}
     >

@@ -52,6 +52,12 @@ p {
   width: 1200px;
   margin: 0 auto;
 }
+button {
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.7;
+}
 
 /* reset css */
 html,

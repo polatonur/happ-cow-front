@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Star, StarHalf, Heart } from "phosphor-react";
 import styles from "../styles/RestaurantHeader.module.css";
 import Image from "next/image";
@@ -48,7 +49,7 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
           <h2>{name}</h2>
           <div className={styles.rating_and_type}>
             <span>
-              <Image src={getImageUri()} alt={type} width={20} height={20} />{" "}
+              <img src={getImageUri()} alt={type} width={20} height={20} />{" "}
               <span className={styles.type}>{type}</span>
             </span>{" "}
             <span>{getRating()}</span>
