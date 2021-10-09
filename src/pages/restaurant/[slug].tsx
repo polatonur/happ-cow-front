@@ -9,6 +9,7 @@ import RestaurantContact from "../../components/RestaurantContact";
 import Carrousel from "../../components/Carrousel";
 import NearbyRestos from "../../components/NearbyRestos";
 import RestaurantReviews from "../../components/RestaurantReviews";
+import { useRouter } from "next/router";
 
 export type NearRestos = Pick<
   Restaurant,
@@ -16,6 +17,11 @@ export type NearRestos = Pick<
 >;
 type Props = { data: { result: Restaurant; near: Array<NearRestos> } };
 const RestaurantPage = ({ data }: Props) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/addReview");
+  };
   return (
     <Layout>
       <div className={styles.restaurant}>
@@ -33,7 +39,7 @@ const RestaurantPage = ({ data }: Props) => {
             phone={data.result.phone}
           />
           <div className={styles.add_review}>
-            <button>
+            <button onClick={handleClick}>
               {" "}
               <Pencil size={30} color="#fff" /> Add Review
             </button>
