@@ -37,7 +37,7 @@
   width: 100%;
   border: none;
 }
-.search_bar > span {
+.search_bar .icon_div {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
   color: white;
   background-color: var(--main-purple);
 }
-.search_bar > span:hover {
+.search_bar .icon_div :hover {
   opacity: 0.7;
 }
 .decoration {

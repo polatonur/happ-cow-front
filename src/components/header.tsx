@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React from "react";
 import logo from "../assets/img/logo.svg";
 import Image from "next/image";
@@ -8,7 +9,9 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <Image src={logo} alt="happ cow" />
+        <Link href="/">
+          <Image src={logo} alt="happ cow" />
+        </Link>
       </div>
       <div className={styles.nav_bar}>
         <ul>

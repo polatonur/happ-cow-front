@@ -11,9 +11,9 @@ const Hero = () => {
         <h1 className={styles.title}>Find Vegan Reataurants</h1>
         <div className={styles.search_bar}>
           <input placeholder="Search" type="search" />
-          <span>
+          <div className={styles.icon_div}>
             <Image src={searchIcon} alt="search"></Image>
-          </span>
+          </div>
         </div>
         <div className={styles.decoration}>
           <HeroDecoration />

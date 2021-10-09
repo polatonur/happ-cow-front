@@ -3,6 +3,7 @@
   width: 270px;
   flex-shrink: 0;
   position: relative;
+  cursor: pointer;
 }
 .like,
 .friend {
@@ -37,6 +38,11 @@
 .photo img {
   border-radius: 7px;
   object-fit: cover;
+  transition: ease 3s;
+}
+.photo img:hover {
+  transition: ease 3s;
+  object-position: top;
 }
 .info .name {
   display: flex;
