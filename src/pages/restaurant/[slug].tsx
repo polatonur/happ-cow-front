@@ -15,15 +15,34 @@ export type NearRestos = Pick<
   Restaurant,
   "_id" | "address" | "name" | "thumbnail" | "type" | "rating"
 >;
-type Props = { data: { result: Restaurant; near: Array<NearRestos> } };
-const RestaurantPage = ({ data }: Props) => {
+export type ReviewType = {
+  title: string;
+  body: string;
+  date: string;
+  owner: string;
+  rating: string;
+  restaurantId: string;
+};
+type Props = {
+  data: {
+    result: Restaurant;
+    near: Array<NearRestos>;
+    reviews: Array<ReviewType>;
+  };
+  user: string | null;
+  setUser: (val: string) => void;
+};
+const RestaurantPage = ({ data, user, setUser }: Props) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/addReview");
+    router.push({
+      pathname: `/restaurant/review/[Id]`,
+      query: { Id: data.result._id, name: data.result.name },
+    });
   };
   return (
-    <Layout>
+    <Layout user={user} setUser={setUser}>
       <div className={styles.restaurant}>
         <RestaurantHeader
           name={data.result.name}
@@ -46,7 +65,7 @@ const RestaurantPage = ({ data }: Props) => {
           </div>
           <Carrousel photos={data.result.pictures} />
           <NearbyRestos nearbyList={data.near} />
-          <RestaurantReviews />
+          <RestaurantReviews reviews={data.reviews} />
         </main>
       </div>
     </Layout>
@@ -60,7 +79,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const response = await axios.get(`http://localhost:5000/restaurant/${id}`);
 
-    const data: { result: Restaurant; near: Array<NearRestos> } = response.data;
+    const data: {
+      result: Restaurant;
+      near: Array<NearRestos>;
+      reviews: Array<ReviewType>;
+    } = response.data;
     // console.log("axios response", data.result);
 
     return {

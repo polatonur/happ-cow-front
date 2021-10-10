@@ -2,11 +2,17 @@ import React from "react";
 import styles from "../styles/RestauranReviews.module.css";
 import Image from "next/image";
 import nobody from "../assets/img/nobody.svg";
+import { ReviewType } from "../pages/restaurant/[slug]";
 
-const RestaurantReviews = () => {
+type Props = {
+  reviews: Array<ReviewType>;
+};
+const RestaurantReviews = ({ reviews }: Props) => {
   return (
     <div className={styles.reviews}>
-      <h1>9 Reviews</h1>
+      <h1>
+        {reviews?.length | 0} Review {reviews?.length > 0 ? "s" : ""}
+      </h1>
       <div className={styles.card}>
         <div className={styles.writer}>
           <div className={styles.avatar}>

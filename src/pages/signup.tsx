@@ -5,13 +5,18 @@ import Image from "next/image";
 import signup from "../assets/img/signup.jpg";
 import { useRouter } from "next/router";
 
-const Signup = () => {
+type Props = {
+  user: string | null;
+  setUser: (val: string) => void;
+};
+
+const Signup = ({ user, setUser }: Props) => {
   const router = useRouter();
   const handleClick = () => {
     router.push("/login");
   };
   return (
-    <Layout>
+    <Layout user={user} setUser={setUser}>
       <div className={styles.signup}>
         <main>
           <div className={styles.col_1}>

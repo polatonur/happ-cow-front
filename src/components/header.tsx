@@ -5,7 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
 
-const Header = () => {
+interface Props {
+  user: string | null;
+  setUser: (val: string) => void;
+}
+const Header = ({ user, setUser }: Props) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -15,13 +19,18 @@ const Header = () => {
       </div>
       <div className={styles.nav_bar}>
         <ul>
-          <li>
-            <Link href="/signup">Sign up</Link>
-          </li>
-          <li>
-            <Link href="/login">Login</Link>
-          </li>
-          <li>Sign out</li>
+          {user ? (
+            <>
+              <li>
+                <Link href="/signup">Sign up</Link>
+              </li>
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
+            </>
+          ) : (
+            <li>Sign out</li>
+          )}
         </ul>
       </div>
     </header>

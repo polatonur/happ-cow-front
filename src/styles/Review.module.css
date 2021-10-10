@@ -31,7 +31,7 @@
 .add_review p {
   color: #444444;
   font-family: "Nunito";
-  line-height: 20px;
+  line-height: 24px;
 }
 .add_review input,
 .add_review textarea {
@@ -72,6 +72,9 @@
 .rating {
   margin-bottom: 40px;
 }
+.star {
+  cursor: pointer;
+}
 .add_review h3 {
   margin: 20px 0;
 }
@@ -82,6 +85,8 @@
 }
 .pros_cons span {
   margin-right: 10px;
+  font-family: "Nunito";
+  margin-top: 10px;
 }
 .add_review form button {
   background-color: var(--main-purple);

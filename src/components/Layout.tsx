@@ -4,11 +4,13 @@ import Header from "./Header";
 
 interface Props {
   children: ReactChildren | ReactChild;
+  user: string | null;
+  setUser: (val: string) => void;
 }
 const Layout = (props: Props) => {
   return (
     <div>
-      <Header />
+      <Header user={props.user} setUser={props.setUser} />
       <main>{props.children}</main>
       <Footer />
     </div>

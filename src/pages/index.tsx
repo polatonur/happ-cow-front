@@ -33,12 +33,14 @@ export type Restaurant = z.infer<typeof Restaurant>;
 
 type Props = {
   data: Data;
+  user: string | null;
+  setUser: (val: string) => void;
 };
-const HomePage = ({ data }: Props) => {
+const HomePage = ({ data, user, setUser }: Props) => {
   console.log(data);
 
   return (
-    <Layout>
+    <Layout user={user} setUser={setUser}>
       <div className={styles.home}>
         <Hero />
         <main className="container">
