@@ -55,7 +55,7 @@ const NearbyRestos = ({ nearbyList }: Props) => {
           >
             <CaretRight size={38} />
           </div>
-          {nearbyList.map((elem) => {
+          {nearbyList.map((elem, index) => {
             return (
               <Link
                 key={elem._id}

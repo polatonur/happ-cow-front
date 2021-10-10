@@ -2,14 +2,29 @@
 import { Star, StarHalf, Heart } from "phosphor-react";
 import styles from "../styles/RestaurantHeader.module.css";
 import Image from "next/image";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { array } from "zod";
 
 type Props = {
   name: string;
   rating: number;
   type: string;
+  favorite: number;
+  restaurantId: string;
+  setUserFavList: (val: string[]) => void;
+  userFavList: Array<string>;
 };
 
-const RestaurantHeader = ({ name, rating, type }: Props) => {
+const RestaurantHeader = ({
+  name,
+  rating,
+  type,
+  favorite,
+  restaurantId,
+  setUserFavList,
+  userFavList,
+}: Props) => {
   const slug = name.toLowerCase().replace(/\s|'/g, "-").replace(/-+/g, "-");
 
   //create src  image uri
@@ -19,6 +34,31 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
       .replace(/\s/g, "-")}.svg`;
     return imageUri;
   };
+
+  const handleClick = async () => {
+    const userId = Cookies.get("UserId");
+    const token = Cookies.get("UserToken");
+    try {
+      const response: any = await axios.post(
+        "http://localhost:5000/user/favorites",
+        {
+          restaurantId: restaurantId,
+          userId: userId,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setUserFavList(response.data);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+  console.log("favlist===>", userFavList);
 
   // create reating stars
   const getRating = () => {
@@ -57,9 +97,15 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
           </div>
         </div>
         <div className={styles.col_2}>
-          <div className={styles.add_favorite}>
-            <span className={styles.fav_count}>{0}</span>
-            <Star size={23} color="#7c4ec4" />
+          <div onClick={() => handleClick()} className={styles.add_favorite}>
+            <span className={styles.fav_count}>{favorite}</span>
+            <Star
+              size={23}
+              color="#7c4ec4"
+              // weight={
+              //   userFavList.indexOf(restaurantId) !== -1 ? "fill" : "regular"
+              // }
+            />
           </div>
           <span>Favorite</span>
         </div>

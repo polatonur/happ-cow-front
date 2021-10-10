@@ -10,6 +10,7 @@ import Carrousel from "../../components/Carrousel";
 import NearbyRestos from "../../components/NearbyRestos";
 import RestaurantReviews from "../../components/RestaurantReviews";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export type NearRestos = Pick<
   Restaurant,
@@ -28,13 +29,16 @@ type Props = {
     result: Restaurant;
     near: Array<NearRestos>;
     reviews: Array<ReviewType>;
+    favList: Array<string>;
   };
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 };
 const RestaurantPage = ({ data, user, setUser }: Props) => {
-  const router = useRouter();
+  console.log(data);
 
+  const router = useRouter();
+  const [userFavList, setUserFavList] = useState(data.favList);
   const handleClick = () => {
     router.push({
       pathname: `/restaurant/review/[Id]`,
@@ -45,9 +49,13 @@ const RestaurantPage = ({ data, user, setUser }: Props) => {
     <Layout user={user} setUser={setUser}>
       <div className={styles.restaurant}>
         <RestaurantHeader
+          userFavList={userFavList}
+          setUserFavList={setUserFavList}
+          restaurantId={data.result._id}
           name={data.result.name}
           rating={data.result.rating}
           type={data.result.type}
+          favorite={data.result.favorite}
         />
         <main className="container">
           <RestaurantContact
@@ -83,6 +91,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       result: Restaurant;
       near: Array<NearRestos>;
       reviews: Array<ReviewType>;
+      favList: Array<String>;
     } = response.data;
     // console.log("axios response", data.result);
 

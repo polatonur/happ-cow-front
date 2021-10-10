@@ -10,7 +10,7 @@ type Props = {
   id: string;
   name: string;
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 };
 const AddReview = ({ id, name, user, setUser }: Props) => {
   const [rating, setRating] = useState(0);

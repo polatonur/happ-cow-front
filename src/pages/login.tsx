@@ -5,10 +5,11 @@ import Image from "next/image";
 import login from "../assets/img/login.jpg";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 type Props = {
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 };
 
 const Login = ({ user, setUser }: Props) => {
@@ -23,10 +24,15 @@ const Login = ({ user, setUser }: Props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/user/login", {
-        email,
-        password,
-      });
+      const response: { data: { id: string; token: string } } =
+        await axios.post("http://localhost:5000/user/login", {
+          email,
+          password,
+        });
+      Cookies.set("UserId", response.data.id);
+      Cookies.set("UserToken", response.data.token);
+      setUser(response.data.token);
+      router.push("/");
     } catch (error: any) {
       console.log(error.message);
     }
@@ -53,14 +59,16 @@ const Login = ({ user, setUser }: Props) => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                type="text"
+                type="password"
                 value={password}
               />
               <button type="submit">Login</button>
             </form>
             <div className={styles.bottom}>
               <p>OR</p>
-              <button onClick={handleClick}>Register</button>
+              <button type="button" onClick={handleClick}>
+                Register
+              </button>
             </div>
           </div>
         </main>

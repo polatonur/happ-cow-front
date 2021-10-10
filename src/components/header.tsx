@@ -7,9 +7,11 @@ import styles from "../styles/Header.module.css";
 
 interface Props {
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 }
 const Header = ({ user, setUser }: Props) => {
+  console.log("user===>", user);
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -19,7 +21,7 @@ const Header = ({ user, setUser }: Props) => {
       </div>
       <div className={styles.nav_bar}>
         <ul>
-          {user ? (
+          {!user ? (
             <>
               <li>
                 <Link href="/signup">Sign up</Link>
@@ -29,7 +31,7 @@ const Header = ({ user, setUser }: Props) => {
               </li>
             </>
           ) : (
-            <li>Sign out</li>
+            <li onClick={() => setUser(null)}>Sign out</li>
           )}
         </ul>
       </div>

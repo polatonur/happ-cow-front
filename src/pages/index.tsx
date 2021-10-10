@@ -26,6 +26,7 @@ const Restaurant = z.object({
   description: z.string(),
   pictures: z.array(z.string()),
   nearbyPlaces: z.array(z.string()),
+  favorite: z.number(),
 });
 const Data = Restaurant.array();
 export type Data = z.infer<typeof Data>;
@@ -34,7 +35,7 @@ export type Restaurant = z.infer<typeof Restaurant>;
 type Props = {
   data: Data;
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 };
 const HomePage = ({ data, user, setUser }: Props) => {
   console.log(data);

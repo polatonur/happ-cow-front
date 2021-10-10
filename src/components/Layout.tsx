@@ -5,7 +5,7 @@ import Header from "./Header";
 interface Props {
   children: ReactChildren | ReactChild;
   user: string | null;
-  setUser: (val: string) => void;
+  setUser: (val: string | null) => void;
 }
 const Layout = (props: Props) => {
   return (
