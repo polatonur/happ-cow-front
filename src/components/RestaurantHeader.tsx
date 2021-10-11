@@ -4,13 +4,14 @@ import styles from "../styles/RestaurantHeader.module.css";
 import Image from "next/image";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { array } from "zod";
+import { useState } from "react";
 
 type Props = {
   name: string;
   rating: number;
   type: string;
-  favorite: number;
+  restoFavCount: number;
+  setRestoFavCount: (val: number) => void;
   restaurantId: string;
   setUserFavList: (val: string[]) => void;
   userFavList: Array<string>;
@@ -20,13 +21,12 @@ const RestaurantHeader = ({
   name,
   rating,
   type,
-  favorite,
   restaurantId,
   setUserFavList,
+  restoFavCount,
+  setRestoFavCount,
   userFavList,
 }: Props) => {
-  const slug = name.toLowerCase().replace(/\s|'/g, "-").replace(/-+/g, "-");
-
   //create src  image uri
   const getImageUri = () => {
     const imageUri = `https://www.happycow.net/img/category/category_${type
@@ -36,8 +36,8 @@ const RestaurantHeader = ({
   };
 
   const handleClick = async () => {
-    const userId = Cookies.get("UserId");
-    const token = Cookies.get("UserToken");
+    const userId = Cookies.get("userId");
+    const token = Cookies.get("userToken");
     try {
       const response: any = await axios.post(
         "http://localhost:5000/user/favorites",
@@ -51,8 +51,9 @@ const RestaurantHeader = ({
           },
         }
       );
-      console.log(response.data);
-      setUserFavList(response.data);
+      console.log(response.data.message);
+      setUserFavList(response.data.message);
+      setRestoFavCount(response.data.count);
     } catch (error: any) {
       console.log(error.message);
     }
@@ -93,18 +94,17 @@ const RestaurantHeader = ({
               <span className={styles.type}>{type}</span>
             </span>{" "}
             <span>{getRating()}</span>
-            <span className={styles.review_count}>{"0 review"}</span>
           </div>
         </div>
         <div className={styles.col_2}>
           <div onClick={() => handleClick()} className={styles.add_favorite}>
-            <span className={styles.fav_count}>{favorite}</span>
+            <span className={styles.fav_count}>{restoFavCount}</span>
             <Star
               size={23}
               color="#7c4ec4"
-              // weight={
-              //   userFavList.indexOf(restaurantId) !== -1 ? "fill" : "regular"
-              // }
+              weight={
+                userFavList?.indexOf(restaurantId) !== -1 ? "fill" : "regular"
+              }
             />
           </div>
           <span>Favorite</span>
@@ -115,3 +115,6 @@ const RestaurantHeader = ({
 };
 
 export default RestaurantHeader;
+function userFavList(arg0: string, userFavList: any) {
+  throw new Error("Function not implemented.");
+}

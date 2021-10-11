@@ -8,6 +8,7 @@ import { GetServerSideProps } from "next";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
 import CardResto from "../components/CardResto";
+import useAuth from "../hooks/useAuth";
 
 const Restaurant = z.object({
   _id: z.string(),
@@ -34,14 +35,10 @@ export type Restaurant = z.infer<typeof Restaurant>;
 
 type Props = {
   data: Data;
-  user: string | null;
-  setUser: (val: string | null) => void;
 };
-const HomePage = ({ data, user, setUser }: Props) => {
-  console.log(data);
-
+const HomePage = ({ data }: Props) => {
   return (
-    <Layout user={user} setUser={setUser}>
+    <Layout>
       <div className={styles.home}>
         <Hero />
         <main className="container">
@@ -81,3 +78,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
+function authContext(authContext: any): any {
+  throw new Error("Function not implemented.");
+}

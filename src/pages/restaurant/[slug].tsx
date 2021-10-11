@@ -10,19 +10,25 @@ import Carrousel from "../../components/Carrousel";
 import NearbyRestos from "../../components/NearbyRestos";
 import RestaurantReviews from "../../components/RestaurantReviews";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import useAuth from "../../hooks/useAuth";
 
 export type NearRestos = Pick<
   Restaurant,
   "_id" | "address" | "name" | "thumbnail" | "type" | "rating"
 >;
 export type ReviewType = {
+  _id: string;
   title: string;
   body: string;
   date: string;
   owner: string;
+  ownerName: string;
   rating: string;
   restaurantId: string;
+  pros: string[];
+  cons: string[];
 };
 type Props = {
   data: {
@@ -31,22 +37,61 @@ type Props = {
     reviews: Array<ReviewType>;
     favList: Array<string>;
   };
-  user: string | null;
-  setUser: (val: string | null) => void;
 };
-const RestaurantPage = ({ data, user, setUser }: Props) => {
-  console.log(data);
-
+const RestaurantPage = ({ data }: Props) => {
+  const [restoFavCount, setRestoFavCount] = useState(data.result.favorite);
   const router = useRouter();
+  console.log("router==>", router);
+
   const [userFavList, setUserFavList] = useState(data.favList);
+  const { user, login, logout } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      getFavlist();
+    }
+  }, [user]);
+
+  const getFavlist = async () => {
+    try {
+      console.log("effect");
+
+      const id = Cookies.get("userId");
+      const token = Cookies.get("userToken");
+      const response = await axios.get(
+        `http://localhost:5000/user/favlist?id=${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      interface Data {
+        message: string[];
+      }
+      const data: Data = response.data;
+      console.log(data.message);
+
+      setUserFavList(data.message);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
   const handleClick = () => {
-    router.push({
-      pathname: `/restaurant/review/[Id]`,
-      query: { Id: data.result._id, name: data.result.name },
-    });
+    if (user) {
+      router.push({
+        pathname: `/restaurant/review/[Id]`,
+        query: { Id: data.result._id, name: data.result.name },
+      });
+    } else {
+      router.push({
+        pathname: `/login`,
+        query: { next: router.asPath },
+      });
+    }
   };
   return (
-    <Layout user={user} setUser={setUser}>
+    <Layout>
       <div className={styles.restaurant}>
         <RestaurantHeader
           userFavList={userFavList}
@@ -55,7 +100,8 @@ const RestaurantPage = ({ data, user, setUser }: Props) => {
           name={data.result.name}
           rating={data.result.rating}
           type={data.result.type}
-          favorite={data.result.favorite}
+          restoFavCount={restoFavCount}
+          setRestoFavCount={setRestoFavCount}
         />
         <main className="container">
           <RestaurantContact

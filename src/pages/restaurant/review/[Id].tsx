@@ -9,17 +9,19 @@ import Cookies from "js-cookie";
 type Props = {
   id: string;
   name: string;
-  user: string | null;
-  setUser: (val: string | null) => void;
 };
-const AddReview = ({ id, name, user, setUser }: Props) => {
+const AddReview = ({ id, name }: Props) => {
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [pros, setPros] = useState<string[]>([]);
+  const [cons, setCons] = useState<string[]>([]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const userId = Cookies.get("UserId");
+    const userId = Cookies.get("userId");
+    const token = Cookies.get("userToken");
+    const userName = Cookies.get("userName");
     try {
       const response = await axios.post(
         "http://localhost:5000/restaurant/review",
@@ -29,6 +31,13 @@ const AddReview = ({ id, name, user, setUser }: Props) => {
           userId,
           restaurantId: id,
           rating,
+          pros: pros,
+          cons: cons,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         }
       );
     } catch (error: any) {
@@ -37,7 +46,7 @@ const AddReview = ({ id, name, user, setUser }: Props) => {
   };
 
   return (
-    <Layout user={user} setUser={setUser}>
+    <Layout>
       <div className={styles.add_review}>
         <main>
           <h1>
@@ -92,28 +101,85 @@ const AddReview = ({ id, name, user, setUser }: Props) => {
             <div className={styles.pros_cons}>
               {" "}
               <span>1.</span>{" "}
-              <input type="text" placeholder="Something good..." />
+              <input
+                onChange={(e) => {
+                  const list = [...pros];
+                  list[0] = e.target.value;
+                  setPros(list);
+                }}
+                value={pros[0]}
+                type="text"
+                placeholder="Something good..."
+              />
             </div>
             <div className={styles.pros_cons}>
               <span>2.</span>{" "}
-              <input type="text" placeholder="Something good..." />
+              <input
+                onChange={(e) => {
+                  const list = [...pros];
+                  list[1] = e.target.value;
+                  setPros(list);
+                }}
+                value={pros[1]}
+                type="text"
+                placeholder="Something good..."
+              />
             </div>
             <div className={styles.pros_cons}>
               <span>3.</span>{" "}
-              <input type="text" placeholder="Something good..." />
+              <input
+                onChange={(e) => {
+                  const list = [...pros];
+                  list[2] = e.target.value;
+                  setPros(list);
+                }}
+                value={pros[2]}
+                type="text"
+                placeholder="Something good..."
+              />
             </div>
             <label>Cons:</label>
             <div className={styles.pros_cons}>
               {" "}
-              <span>1.</span> <input type="text" placeholder="Dislike the..." />
+              <span>1.</span>{" "}
+              <input
+                onChange={(e) => {
+                  const list = [...cons];
+                  list[0] = e.target.value;
+                  setCons(list);
+                }}
+                value={cons[0]}
+                type="text"
+                placeholder="Dislike the..."
+              />
             </div>
             <div className={styles.pros_cons}>
-              <span>2.</span> <input type="text" placeholder="Dislike the..." />
+              <span>2.</span>{" "}
+              <input
+                onChange={(e) => {
+                  const list = [...cons];
+                  list[1] = e.target.value;
+                  setCons(list);
+                }}
+                value={cons[1]}
+                type="text"
+                placeholder="Dislike the..."
+              />
             </div>
             <div className={styles.pros_cons}>
-              <span>3.</span> <input type="text" placeholder="Dislike the..." />
+              <span>3.</span>{" "}
+              <input
+                onChange={(e) => {
+                  const list = [...cons];
+                  list[2] = e.target.value;
+                  setCons(list);
+                }}
+                value={cons[2]}
+                type="text"
+                placeholder="Dislike the..."
+              />
             </div>
-            <button>Save</button>
+            <button type="submit">Save</button>
           </form>
         </main>
       </div>
@@ -126,11 +192,12 @@ export default AddReview;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const name = context.query.name;
+
     const id = context.query.Id;
     return {
       props: {
         name,
-        // id,
+        id,
       },
     };
   } catch (error) {

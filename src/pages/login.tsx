@@ -2,17 +2,15 @@ import styles from "../styles/Login.module.css";
 import { useState } from "react";
 import Layout from "../components/Layout";
 import Image from "next/image";
-import login from "../assets/img/login.jpg";
+import loginImage from "../assets/img/login.jpg";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useAuth from "../hooks/useAuth";
 
-type Props = {
-  user: string | null;
-  setUser: (val: string | null) => void;
-};
+const Login = () => {
+  const { login } = useAuth();
 
-const Login = ({ user, setUser }: Props) => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,26 +22,32 @@ const Login = ({ user, setUser }: Props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response: { data: { id: string; token: string } } =
-        await axios.post("http://localhost:5000/user/login", {
-          email,
-          password,
-        });
-      Cookies.set("UserId", response.data.id);
-      Cookies.set("UserToken", response.data.token);
-      setUser(response.data.token);
-      router.push("/");
+      const response: {
+        data: { id: string; token: string; username: string };
+      } = await axios.post("http://localhost:5000/user/login", {
+        email,
+        password,
+      });
+      Cookies.set("userId", response.data.id);
+      Cookies.set("userToken", response.data.token);
+      Cookies.set("userName", response.data.username);
+      login();
+      if (router.query?.next) {
+        router.push(`${router.query?.next}`);
+      } else {
+        router.push("/");
+      }
     } catch (error: any) {
       console.log(error.message);
     }
   };
 
   return (
-    <Layout user={user} setUser={setUser}>
+    <Layout>
       <div className={styles.login}>
         <main>
           <div className={styles.col_1}>
-            <Image src={login} alt="login" />
+            <Image src={loginImage} alt="login" />
           </div>
           <div className={styles.col_2}>
             <form onSubmit={(e) => handleSubmit(e)}>

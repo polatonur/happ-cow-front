@@ -4,13 +4,11 @@ import logo from "../assets/img/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
+import useAuth from "../hooks/useAuth";
 
-interface Props {
-  user: string | null;
-  setUser: (val: string | null) => void;
-}
-const Header = ({ user, setUser }: Props) => {
-  console.log("user===>", user);
+const Header = () => {
+  const { user, login, logout } = useAuth();
+  console.log("header==user", user);
 
   return (
     <header className={styles.header}>
@@ -26,12 +24,14 @@ const Header = ({ user, setUser }: Props) => {
               <li>
                 <Link href="/signup">Sign up</Link>
               </li>
+              <li onClick={() => login()}>tets-login</li>
+              <li onClick={() => logout()}>tets-logout</li>
               <li>
                 <Link href="/login">Login</Link>
               </li>
             </>
           ) : (
-            <li onClick={() => setUser(null)}>Sign out</li>
+            <li onClick={() => logout()}>Sign out</li>
           )}
         </ul>
       </div>

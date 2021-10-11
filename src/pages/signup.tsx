@@ -6,16 +6,14 @@ import signup from "../assets/img/signup.jpg";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useAuth from "../hooks/useAuth";
 
-type Props = {
-  user: string | null;
-  setUser: (val: string | null) => void;
-};
-
-const Signup = ({ user, setUser }: Props) => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+
+  const { login } = useAuth();
 
   const router = useRouter();
   const handleClick = () => {
@@ -25,22 +23,25 @@ const Signup = ({ user, setUser }: Props) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response: { data: { id: string; token: string } } =
-        await axios.post("http://localhost:5000/user/signup", {
-          email,
-          password,
-          username,
-        });
-      Cookies.set("UserId", response.data.id);
-      Cookies.set("UserToken", response.data.token);
-      setUser(response.data.token);
+      const response: {
+        data: { id: string; token: string; username: string };
+      } = await axios.post("http://localhost:5000/user/signup", {
+        email,
+        password,
+        username,
+      });
+      Cookies.set("userId", response.data.id);
+      Cookies.set("userToken", response.data.token);
+      Cookies.set("userName", response.data.username);
+
+      login();
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
     }
   };
   return (
-    <Layout user={user} setUser={setUser}>
+    <Layout>
       <div className={styles.signup}>
         <main>
           <div className={styles.col_1}>
