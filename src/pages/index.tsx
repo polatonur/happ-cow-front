@@ -44,7 +44,9 @@ const HomePage = ({ data }: Props) => {
         <main className="container">
           <div className={styles.title}>
             <h1>Best Vegan Restaurants in Paris, France</h1>
-            <Link href="/restaurant/search">
+            <Link
+              href={{ pathname: "/restaurant/search", query: { text: "" } }}
+            >
               <span>
                 View all <Image src={chevronRight} alt="chevron right" />
               </span>
@@ -80,6 +82,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
-function authContext(authContext: any): any {
-  throw new Error("Function not implemented.");
-}

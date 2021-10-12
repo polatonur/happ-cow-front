@@ -8,7 +8,7 @@ import useAuth from "../hooks/useAuth";
 
 const Header = () => {
   const { user, login, logout } = useAuth();
-  console.log("header==user", user);
+  // console.log("header==user", user);
 
   return (
     <header className={styles.header}>
