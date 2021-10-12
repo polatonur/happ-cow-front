@@ -49,7 +49,7 @@ const RestaurantHeader = ({
       const token = Cookies.get("userToken");
       try {
         const response: any = await axios.post(
-          "http://localhost:5000/user/favorites",
+          "https://happy-cow-back.api.dotonur.dev/user/favorites",
           {
             restaurantId: restaurantId,
             userId: userId,

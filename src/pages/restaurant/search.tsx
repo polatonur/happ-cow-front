@@ -74,7 +74,7 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
     };
     try {
       const response: Response = await axios.get(
-        `http://localhost:5000/restaurants/search?title=${text}&type=${filter}&limit=${limit}&page=${activePage}`
+        `https://happy-cow-back.api.dotonur.dev/restaurants/search?title=${text}&type=${filter}&limit=${limit}&page=${activePage}`
       );
 
       setSearchResults(response.data.results);
@@ -101,15 +101,6 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
     }
   }, [activePage]);
 
-  //   const handleOnchange = (value: string) => {
-  //     if (value === "") {
-  //       setText("");
-  //       handleClick(value);
-  //     } else {
-  //       setText(value);
-  //     }
-  //   };
-  // create reating stars
   const getRating = (rating: number) => {
     const result = [1, 2, 3, 4, 5].map((elem, index) => (
       <Star key={index} size={20} color="#ffcc00" weight="fill" />
@@ -238,7 +229,7 @@ export const getServerSideProps = async (context: {
 
   try {
     const response = await axios.get(
-      `http://localhost:5000/restaurants/search?title=${title}`
+      `https://happy-cow-back.api.dotonur.dev/restaurants/search?title=${title}`
     );
     const data = response.data;
     return {

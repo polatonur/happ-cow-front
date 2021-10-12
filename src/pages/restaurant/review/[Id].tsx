@@ -29,7 +29,7 @@ const AddReview = ({ id, name, previousPageRef }: Props) => {
     const userName = Cookies.get("userName");
     try {
       const response = await axios.post(
-        "http://localhost:5000/restaurant/review",
+        "https://happy-cow-back.api.dotonur.dev/restaurant/review",
         {
           title,
           body,

@@ -69,7 +69,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log("1");
 
   try {
-    const response = await axios.get("http://localhost:5000/restaurants/best");
+    const response = await axios.get(
+      "https://happy-cow-back.api.dotonur.dev/restaurants/best"
+    );
     const data: Data = response.data;
     return {
       props: {

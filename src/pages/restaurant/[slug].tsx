@@ -65,7 +65,7 @@ const RestaurantPage = ({ data }: Props) => {
       const id = Cookies.get("userId");
       const token = Cookies.get("userToken");
       const response = await axios.get(
-        `http://localhost:5000/user/favlist?id=${id}`,
+        `https://happy-cow-back.api.dotonur.dev/user/favlist?id=${id}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -141,7 +141,9 @@ export default RestaurantPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id;
   try {
-    const response = await axios.get(`http://localhost:5000/restaurant/${id}`);
+    const response = await axios.get(
+      `https://happy-cow-back.api.dotonur.dev/restaurant/${id}`
+    );
 
     const data: {
       result: Restaurant;

@@ -24,10 +24,13 @@ const Login = () => {
     try {
       const response: {
         data: { id: string; token: string; username: string };
-      } = await axios.post("http://localhost:5000/user/login", {
-        email,
-        password,
-      });
+      } = await axios.post(
+        "https://happy-cow-back.api.dotonur.dev/user/login",
+        {
+          email,
+          password,
+        }
+      );
       Cookies.set("userId", response.data.id);
       Cookies.set("userToken", response.data.token);
       Cookies.set("userName", response.data.username);
