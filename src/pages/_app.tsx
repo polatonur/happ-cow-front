@@ -1,7 +1,15 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { useRef, useState } from "react";
+import { AuthProvider } from "../assets/useContext/AuthProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const [ok, setstate] = useState("onur");
+
+  return (
+    <AuthProvider>
+      <Component {...pageProps} ok={ok} />
+    </AuthProvider>
+  );
 }
-export default MyApp
+export default MyApp;

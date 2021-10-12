@@ -1,0 +1,140 @@
+.search {
+  min-height: calc(100vh - 110px);
+  padding: 50px 0;
+}
+.search_bar {
+  border-radius: 5px;
+  width: 700px;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+}
+.search_bar input {
+  border-radius: 5px;
+  outline-color: var(--main-purple);
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  font-size: 1.2rem;
+  font-family: "Nunito";
+}
+.search main {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+.filter {
+  display: inline-block;
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: var(--main-purple);
+  font-family: "nunito";
+  font-size: 1.2rem;
+
+  width: max-content;
+}
+.filter select {
+  margin-left: 10px;
+  background-color: transparent;
+  font-size: 1.2rem;
+  height: 20px;
+  line-height: 20px;
+  appearance: none;
+  border: none;
+  font-family: "nunito";
+  outline: none;
+}
+.count_result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  width: max-content;
+  position: relative;
+}
+.count_result::after {
+  content: "";
+  bottom: -5px;
+  width: 100%;
+  left: 0;
+  height: 3px;
+  background-color: var(--main-purple);
+  position: absolute;
+}
+
+.search_bar .icon_div {
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-purple);
+}
+.card {
+  border: 1px solid grey;
+  border-radius: 10px;
+  display: flex;
+  width: 70%;
+  height: 300px;
+  margin-top: 30px;
+}
+.no_result {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--main-green);
+}
+.card > div {
+  height: 100%;
+  width: 50%;
+}
+.col_1 {
+  position: relative;
+  background-color: var(--main-purple);
+  border-radius: 10px;
+}
+.col_1 img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.col_2 {
+  padding: 20px 30px;
+}
+.col_2 h2 {
+  color: var(--main-green);
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-green);
+  border-radius: 10px;
+  width: max-content;
+  height: 40px;
+  padding: 5px;
+  margin: 10px 0;
+  background-color: lavender;
+}
+.address {
+  margin: 20px 0;
+  font-size: 1.3rem;
+}
+.description {
+  margin-top: 20px;
+  font-family: "Nunito";
+  height: 3.6em;
+  overflow: hidden;
+  line-height: 1.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}

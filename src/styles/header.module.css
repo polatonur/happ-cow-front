@@ -7,7 +7,7 @@
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 5000;
   background-color: white;
   justify-content: space-between;
   box-shadow: 0 0 5px grey;
@@ -23,4 +23,18 @@
 .nav_bar ul li {
   margin-left: 20px;
   font-family: "Nunito";
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+.nav_bar ul li:after {
+  display: block;
+  margin-top: 3px;
+  content: "";
+  border-bottom: 3px solid var(--main-purple);
+  transform: scaleX(0);
+  transition: transform ease-in-out 250ms;
+}
+.nav_bar ul li:hover:after {
+  transform: scaleX(1);
 }

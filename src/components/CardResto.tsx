@@ -6,7 +6,7 @@ import Link from "next/link";
 import friend from "../assets/img/friend.svg";
 import Heart from "../assets/icon/Heart";
 import { Restaurant } from "../pages/index";
-import useRating from "../hooks/useRatings";
+import useRatings from "../hooks/useRatings";
 
 type Props = {
   restaurant: Restaurant;
@@ -60,7 +60,7 @@ const CardResto = ({ restaurant }: Props) => {
               ", " +
               restaurant.address.split(", ")[2]}
           </p>
-          <p>{useRating(restaurant.rating)}</p>
+          <p>{useRatings(restaurant.rating)}</p>
         </div>
       </div>
     </Link>

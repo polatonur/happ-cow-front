@@ -6,6 +6,7 @@
   border: 1px solid rgb(187, 184, 184);
   border-radius: 5px;
   overflow: hidden;
+  margin-bottom: 30px;
 }
 .reviews h1 {
   color: #444444;
@@ -32,6 +33,7 @@
 }
 .writer .name {
   color: var(--main-purple);
+  font-size: 1.3rem;
 }
 .review {
   padding: 20px;
@@ -40,6 +42,15 @@
 .review h4 {
   font-size: 1.2rem;
   margin: 10px 0;
+}
+.body {
+  margin-bottom: 20px;
+}
+
+.pros > span:first-child,
+.cons > span:first-child {
+  font-size: 1.2rem;
+  font-family: "Nunito Bold";
 }
 .review p {
   font-family: "Nunito";

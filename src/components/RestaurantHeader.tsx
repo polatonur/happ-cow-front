@@ -1,16 +1,37 @@
 /* eslint-disable @next/next/no-img-element */
-import { Star, StarHalf, Heart } from "phosphor-react";
+import { Star, StarHalf } from "phosphor-react";
 import styles from "../styles/RestaurantHeader.module.css";
 import Image from "next/image";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
 type Props = {
   name: string;
   rating: number;
   type: string;
+  restoFavCount: number;
+  setRestoFavCount: (val: number) => void;
+  restaurantId: string;
+  setUserFavList: (val: string[]) => void;
+  userFavList: Array<string>;
 };
 
-const RestaurantHeader = ({ name, rating, type }: Props) => {
-  const slug = name.toLowerCase().replace(/\s|'/g, "-").replace(/-+/g, "-");
+const RestaurantHeader = ({
+  name,
+  rating,
+  type,
+  restaurantId,
+  setUserFavList,
+  restoFavCount,
+  setRestoFavCount,
+  userFavList,
+}: Props) => {
+  const [displayMessage, setDisplayMessage] = useState(false);
+
+  const router = useRouter();
 
   //create src  image uri
   const getImageUri = () => {
@@ -19,6 +40,48 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
       .replace(/\s/g, "-")}.svg`;
     return imageUri;
   };
+
+  const { user } = useAuth();
+
+  const handleClick = async () => {
+    if (user) {
+      const userId = Cookies.get("userId");
+      const token = Cookies.get("userToken");
+      try {
+        const response: any = await axios.post(
+          "http://localhost:5000/user/favorites",
+          {
+            restaurantId: restaurantId,
+            userId: userId,
+          },
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data.message);
+        setUserFavList(response.data.message);
+        setRestoFavCount(response.data.count);
+        setDisplayMessage(true);
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    } else {
+      router.push({
+        pathname: `/login`,
+        query: { next: router.asPath },
+      });
+    }
+  };
+
+  if (displayMessage) {
+    setTimeout(() => {
+      setDisplayMessage(false);
+    }, 3000);
+  }
+
+  console.log("favlist===>", userFavList);
 
   // create reating stars
   const getRating = () => {
@@ -53,19 +116,47 @@ const RestaurantHeader = ({ name, rating, type }: Props) => {
               <span className={styles.type}>{type}</span>
             </span>{" "}
             <span>{getRating()}</span>
-            <span className={styles.review_count}>{"0 review"}</span>
           </div>
         </div>
         <div className={styles.col_2}>
-          <div className={styles.add_favorite}>
-            <span className={styles.fav_count}>{0}</span>
-            <Star size={23} color="#7c4ec4" />
+          <div onClick={() => handleClick()} className={styles.add_favorite}>
+            <span className={styles.fav_count}>{restoFavCount}</span>
+            <Star
+              size={23}
+              color="#7c4ec4"
+              weight={
+                userFavList?.indexOf(restaurantId) !== -1 ? "fill" : "regular"
+              }
+            />
           </div>
           <span>Favorite</span>
         </div>
       </div>
+      <section
+        style={{ marginBottom: displayMessage ? "0" : "-70px" }}
+        className={styles.click_message}
+      >
+        <div>
+          {" "}
+          <Star
+            size={23}
+            color="#7c4ec4"
+            weight={
+              userFavList?.indexOf(restaurantId) !== -1 ? "fill" : "regular"
+            }
+          />
+          <span>
+            {userFavList?.indexOf(restaurantId) !== -1
+              ? " Added to your favorites"
+              : " Removed from your favorites"}
+          </span>
+        </div>
+      </section>
     </div>
   );
 };
 
 export default RestaurantHeader;
+function userFavList(arg0: string, userFavList: any) {
+  throw new Error("Function not implemented.");
+}

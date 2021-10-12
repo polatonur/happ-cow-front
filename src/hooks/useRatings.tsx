@@ -11,14 +11,14 @@ const useRatings = (rating: number) => {
   if (fullStar === rating) {
     let empityStar = 5 - fullStar;
     for (let i = 4; i > 4 - empityStar; i--) {
-      result[i] = <EmpityStar />;
+      result[i] = <EmpityStar key={i + 1} />;
     }
   } else {
     let empityStar = 5 - fullStar - 1;
     for (let i = 4; i > 4 - empityStar; i--) {
-      result[i] = <EmpityStar />;
+      result[i] = <EmpityStar key={i + 1} />;
     }
-    result[Math.ceil(rating) - 1] = <RatingStarHalf />;
+    result[Math.ceil(rating) - 1] = <RatingStarHalf key={10} />;
   }
 
   return result;

@@ -31,7 +31,7 @@
 .add_review p {
   color: #444444;
   font-family: "Nunito";
-  line-height: 20px;
+  line-height: 24px;
 }
 .add_review input,
 .add_review textarea {
@@ -72,6 +72,9 @@
 .rating {
   margin-bottom: 40px;
 }
+.star {
+  cursor: pointer;
+}
 .add_review h3 {
   margin: 20px 0;
 }
@@ -82,7 +85,37 @@
 }
 .pros_cons span {
   margin-right: 10px;
+  font-family: "Nunito";
+  margin-top: 10px;
 }
 .add_review form button {
   background-color: var(--main-purple);
+}
+
+/* click message */
+
+.click_message {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  margin-bottom: -70px;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease 0.3s;
+}
+.click_message > div {
+  background-color: white;
+  box-shadow: 0 0 10px;
+  width: 350px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.click_message > div > span {
+  margin-left: 10px;
 }

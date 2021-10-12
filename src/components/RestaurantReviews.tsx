@@ -2,28 +2,61 @@ import React from "react";
 import styles from "../styles/RestauranReviews.module.css";
 import Image from "next/image";
 import nobody from "../assets/img/nobody.svg";
+import { ReviewType } from "../pages/restaurant/[slug]";
 
-const RestaurantReviews = () => {
+type Props = {
+  reviews: Array<ReviewType>;
+};
+const RestaurantReviews = ({ reviews }: Props) => {
+  console.log("reviews---->", reviews);
+
   return (
     <div className={styles.reviews}>
-      <h1>9 Reviews</h1>
-      <div className={styles.card}>
-        <div className={styles.writer}>
-          <div className={styles.avatar}>
-            <Image width={90} height={90} src={nobody} alt="kams" />
+      <h1>
+        {reviews?.length | 0} Review{reviews?.length > 1 ? "s" : ""}
+      </h1>
+      {reviews.map((elem) => {
+        return (
+          <div key={elem._id} className={styles.card}>
+            <div className={styles.writer}>
+              <div className={styles.avatar}>
+                <Image width={90} height={90} src={nobody} alt="kams" />
+              </div>
+              <div className={styles.name}> {elem.ownerName}</div>
+            </div>
+            <div className={styles.review}>
+              <p className={styles.date}>
+                {" "}
+                {elem.date.split("T")[0].split("-").reverse().join("/")}
+              </p>
+              <h4>{elem.title}</h4>
+              <p className={styles.body}>{elem.body}</p>
+              {elem.pros.length > 0 && (
+                <p className={styles.pros}>
+                  {" "}
+                  <span>Pros:</span>{" "}
+                  {elem.pros.map((item, index) => {
+                    return (
+                      item !== "" && <span key={index}>{item + " ,"}</span>
+                    );
+                  })}
+                </p>
+              )}
+              {elem.cons.length > 0 && (
+                <p className={styles.cons}>
+                  {" "}
+                  <span>Cons:</span>{" "}
+                  {elem.cons.map((item, index) => {
+                    return (
+                      item !== "" && <span key={index}>{item + " ,"}</span>
+                    );
+                  })}
+                </p>
+              )}
+            </div>
           </div>
-          <div className={styles.name}> kams</div>
-        </div>
-        <div className={styles.review}>
-          <p className={styles.date}> 12/12/20</p>
-          <h4>Amazing</h4>
-          <p>
-            Great shop with friendly staff. They provide vegan products with
-            lots of variety (including international brand). Was glad to find a
-            grocery shop near Boulogne-Billancourt
-          </p>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };

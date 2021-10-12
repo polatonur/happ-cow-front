@@ -1,5 +1,4 @@
 .hero {
-  z-index: -2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +20,7 @@
   font-size: 36px;
 }
 .search_bar {
+  z-index: 0;
   margin: 0 auto;
   height: 50px;
   width: 40%;
@@ -58,6 +58,7 @@
   height: 100px;
   position: absolute;
   right: 0;
-  z-index: -1;
+  /* z-index: 1; */
   bottom: 0;
+  overflow: hidden;
 }

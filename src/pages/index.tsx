@@ -1,10 +1,11 @@
-import type { NextPage } from "next";
+/* eslint-disable @next/next/link-passhref */
 import Layout from "../components/Layout";
 import Hero from "../components/Hero";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
 import CardResto from "../components/CardResto";
@@ -26,6 +27,7 @@ const Restaurant = z.object({
   description: z.string(),
   pictures: z.array(z.string()),
   nearbyPlaces: z.array(z.string()),
+  favorite: z.number(),
 });
 const Data = Restaurant.array();
 export type Data = z.infer<typeof Data>;
@@ -35,8 +37,6 @@ type Props = {
   data: Data;
 };
 const HomePage = ({ data }: Props) => {
-  console.log(data);
-
   return (
     <Layout>
       <div className={styles.home}>
@@ -44,9 +44,13 @@ const HomePage = ({ data }: Props) => {
         <main className="container">
           <div className={styles.title}>
             <h1>Best Vegan Restaurants in Paris, France</h1>
-            <span>
-              View all <Image src={chevronRight} alt="chevron right" />
-            </span>
+            <Link
+              href={{ pathname: "/restaurant/search", query: { text: "" } }}
+            >
+              <span>
+                View all <Image src={chevronRight} alt="chevron right" />
+              </span>
+            </Link>
           </div>
           <div className={`${styles.restos}`}>
             {data.map((elem) => (
