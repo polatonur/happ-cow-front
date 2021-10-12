@@ -33,9 +33,12 @@ const Signup = () => {
       Cookies.set("userId", response.data.id);
       Cookies.set("userToken", response.data.token);
       Cookies.set("userName", response.data.username);
-
       login();
-      router.push("/");
+      if (router.query?.next) {
+        router.push(`${router.query.next}`);
+      } else {
+        router.push("/");
+      }
     } catch (error: any) {
       console.log(error.message);
     }

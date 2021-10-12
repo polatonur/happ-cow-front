@@ -5,17 +5,22 @@ import { useState } from "react";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 type Props = {
   id: string;
   name: string;
+  previousPageRef: { current: string };
 };
-const AddReview = ({ id, name }: Props) => {
+const AddReview = ({ id, name, previousPageRef }: Props) => {
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [pros, setPros] = useState<string[]>([]);
   const [cons, setCons] = useState<string[]>([]);
+  const [displayReviewMessage, setDisplayReviewMessage] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -31,6 +36,7 @@ const AddReview = ({ id, name }: Props) => {
           userId,
           restaurantId: id,
           rating,
+          userName: userName,
           pros: pros,
           cons: cons,
         },
@@ -40,10 +46,25 @@ const AddReview = ({ id, name }: Props) => {
           },
         }
       );
+      setDisplayReviewMessage(true);
+      setTimeout(() => {
+        if (router.query?.next) {
+          router.push({
+            pathname: `${router.query?.next}`,
+            query: { id: id },
+          });
+        } else {
+          router.back();
+        }
+        setDisplayReviewMessage(false);
+      }, 2000);
     } catch (error: any) {
       console.log(error.message);
     }
   };
+
+  if (displayReviewMessage) {
+  }
 
   return (
     <Layout>
@@ -182,6 +203,14 @@ const AddReview = ({ id, name }: Props) => {
             <button type="submit">Save</button>
           </form>
         </main>
+        <section
+          style={{ marginBottom: displayReviewMessage ? "0" : "-70px" }}
+          className={styles.click_message}
+        >
+          <div>
+            <span>Your review added</span>
+          </div>
+        </section>
       </div>
     </Layout>
   );

@@ -36,19 +36,25 @@ type Props = {
     near: Array<NearRestos>;
     reviews: Array<ReviewType>;
     favList: Array<string>;
+    ok: string;
   };
 };
 const RestaurantPage = ({ data }: Props) => {
   const [restoFavCount, setRestoFavCount] = useState(data.result.favorite);
+
   const router = useRouter();
   console.log("router==>", router);
 
   const [userFavList, setUserFavList] = useState(data.favList);
   const { user, login, logout } = useAuth();
 
+  console.log("cooki name===>", Cookies.get("userName"));
+
   useEffect(() => {
     if (user) {
       getFavlist();
+    } else {
+      setUserFavList([]);
     }
   }, [user]);
 
@@ -81,7 +87,11 @@ const RestaurantPage = ({ data }: Props) => {
     if (user) {
       router.push({
         pathname: `/restaurant/review/[Id]`,
-        query: { Id: data.result._id, name: data.result.name },
+        query: {
+          Id: data.result._id,
+          name: data.result.name,
+          next: router.asPath.split("?")[0],
+        },
       });
     } else {
       router.push({

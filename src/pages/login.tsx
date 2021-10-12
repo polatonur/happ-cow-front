@@ -16,7 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleClick = () => {
-    router.push("/signup");
+    router.push({ pathname: "/signup", query: { next: router.query.next } });
   };
 
   const handleSubmit = async (e: any) => {

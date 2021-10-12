@@ -24,8 +24,6 @@ const Header = () => {
               <li>
                 <Link href="/signup">Sign up</Link>
               </li>
-              <li onClick={() => login()}>tets-login</li>
-              <li onClick={() => logout()}>tets-logout</li>
               <li>
                 <Link href="/login">Login</Link>
               </li>

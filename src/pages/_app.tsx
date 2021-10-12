@@ -1,13 +1,14 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useRef, useState } from "react";
 import { AuthProvider } from "../assets/useContext/AuthProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [ok, setstate] = useState("onur");
+
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <Component {...pageProps} ok={ok} />
     </AuthProvider>
   );
 }
