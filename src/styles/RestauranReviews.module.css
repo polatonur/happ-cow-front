@@ -1,0 +1,87 @@
+.reviews {
+  width: 770px;
+  padding-top: 100px;
+}
+.card {
+  border: 1px solid rgb(187, 184, 184);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.reviews h1 {
+  color: #444444;
+  margin-bottom: 40px;
+}
+.writer {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  height: 120px;
+  background-color: #fafafa;
+  border-bottom: 1px solid rgb(187, 184, 184);
+}
+
+.writer .avatar {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.avatar img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+.writer .name {
+  color: var(--main-purple);
+  font-size: 1.3rem;
+}
+.review {
+  padding: 20px;
+  color: #444444;
+}
+.review h4 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+.body {
+  margin-bottom: 20px;
+}
+
+.pros > span:first-child,
+.cons > span:first-child {
+  font-size: 1.2rem;
+  font-family: "Nunito Bold";
+}
+.review p {
+  font-family: "Nunito";
+  font-size: 18px;
+  line-height: 24px;
+}
+@media (max-width: 991.98px) {
+  .reviews {
+    width: 97%;
+    padding-top: 100px;
+  }
+}
+@media (max-width: 767.98px) {
+  .reviews {
+    padding-top: 50px;
+  }
+  .reviews h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .writer {
+    height: 90px;
+  }
+
+  .writer .avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 575.98px) {
+}
+@media (max-width: 375.98px) {
+}

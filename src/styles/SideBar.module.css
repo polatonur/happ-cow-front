@@ -1,0 +1,28 @@
+.sidebar {
+  display: none;
+}
+.menu {
+  z-index: 100;
+  width: 250px;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  margin-right: -250px;
+  height: calc(100vh - 60px);
+  transition: ease-in-out 200ms;
+  background-color: var(--main-purple);
+}
+.sidebar ol li {
+  padding: 20px;
+  cursor: pointer;
+  color: white;
+  font-family: "Nunito";
+  font-size: 1.2rem;
+  line-height: 2rem;
+  border-bottom: 2px dotted white;
+}
+@media (max-width: 575.98px) {
+  .sidebar {
+    display: block;
+  }
+}

@@ -1,0 +1,112 @@
+.carroussel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.carroussel {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.nearby_restos {
+  padding-top: 40px;
+}
+.arrow_left,
+.arrow_right {
+  cursor: pointer;
+  position: absolute;
+  z-index: 5;
+  background-color: rgb(206, 197, 197, 1);
+  border-radius: 50%;
+  top: 100px;
+}
+.arrow_right {
+  right: 0;
+}
+.relative {
+  position: relative;
+}
+.nearby_restos .carroussel {
+  width: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  display: flex;
+}
+.nearby_restos h1 {
+  margin-bottom: 40px;
+  position: relative;
+}
+.nearby_restos h1::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  bottom: -10px;
+  left: 0;
+  height: 10px;
+  width: 50%;
+  background-color: var(--main-purple);
+}
+.card {
+  height: 400px;
+  width: 270px;
+  flex-shrink: 0;
+  margin-right: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.nearby_restos .carroussel .card:last-child {
+  margin-right: 0;
+}
+.photo {
+  position: relative;
+  height: 276px;
+  width: 100%;
+  border-radius: 7px;
+  background-color: var(--main-purple);
+}
+.photo img {
+  height: 100%;
+  border-radius: 7px;
+  object-fit: cover;
+  transition: ease 3s;
+}
+.info .name {
+  display: flex;
+  align-items: center;
+  color: var(--main-green);
+  font-size: 18px;
+  margin: 10px 0;
+}
+.info .name span {
+  margin-left: 5px;
+  font-family: "Nunito Bold";
+}
+.info .adress {
+  font-size: 14px;
+  color: #777777;
+  font-family: "Nunito Bold";
+  margin-bottom: 5px;
+}
+@media (max-width: 767.98px) {
+  .card {
+    height: 300px;
+    width: 270px;
+  }
+  .photo {
+    height: 70%;
+  }
+  .nearby_restos {
+    padding-top: 20px;
+  }
+  .nearby_restos h1 {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+  /* .arrow_left,
+  .arrow_right {
+    margitop: 20%
+  } */
+}
+
+@media (max-width: 575.98px) {
+}

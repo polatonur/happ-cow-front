@@ -1,0 +1,86 @@
+.resto_contact_info {
+  display: flex;
+  padding-top: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+.col_1 {
+  width: 70%;
+}
+.col_1 .line_1 {
+  color: rgb(109, 106, 106);
+  font-family: "Nunito";
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.col_1 .line_1 > span {
+  margin-right: 5px;
+}
+.city {
+  font-family: "Nunito Bold";
+}
+.line_2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+.line_2 > div {
+  display: flex;
+  width: 32%;
+}
+.line_2 > div > div:first-child {
+  margin-right: 20px;
+}
+.line_2 > div > div:last-child p:first-child {
+  color: #424242;
+}
+.line_2 > div > div:last-child p:not(:first-child) {
+  color: #444444;
+  margin-top: 5px;
+  line-height: 20px;
+  font-family: "Nunito";
+}
+.line_3 p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #444444;
+  line-height: 29px;
+  font-family: "Nunito";
+}
+@media (max-width: 1200.98px) {
+  .resto_contact_info {
+    flex-direction: column;
+  }
+  .col_1,
+  .col_2 {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 991.98px) {
+}
+
+@media (max-width: 767.98px) {
+  .contact_icon {
+    width: 30px;
+  }
+  .line_2 > div > div:first-child {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .line_2 {
+    flex-direction: column;
+  }
+  .line_2 > div {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  .line_3 p {
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+}
