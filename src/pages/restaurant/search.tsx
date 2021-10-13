@@ -189,38 +189,34 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
                       query: { id: elem._id },
                     }}
                   >
-                    <>
-                      <div className={styles.card}>
-                        <div className={styles.col_1}>
-                          <Image
-                            src={elem.thumbnail}
-                            layout="fill"
-                            alt={elem.name}
-                          />
-                        </div>
-                        <div className={styles.col_2}>
-                          <h2>{elem.name}</h2>
-                          <span className={styles.type}>
-                            <img
-                              src={getImageUri(elem.type)}
-                              alt={elem.type}
-                              width={20}
-                              height={20}
-                            />{" "}
-                            <span className={styles.type}>{elem.type}</span>
-                          </span>
-                          <p className={styles.description}>
-                            {elem.description}
-                          </p>
-                          <div className={styles.address}>
-                            <p className={styles.adress}>{elem.address}</p>
-                          </div>
-                          <p className={styles.rating}>
-                            {getRating(elem.rating)}
-                          </p>
-                        </div>
+                    <div className={styles.card}>
+                      <div className={styles.col_1}>
+                        <Image
+                          src={elem.thumbnail}
+                          layout="fill"
+                          alt={elem.name}
+                        />
                       </div>
-                    </>
+                      <div className={styles.col_2}>
+                        <h2>{elem.name}</h2>
+                        <span className={styles.type}>
+                          <img
+                            src={getImageUri(elem.type)}
+                            alt={elem.type}
+                            width={20}
+                            height={20}
+                          />{" "}
+                          <span className={styles.type}>{elem.type}</span>
+                        </span>
+                        <p className={styles.description}>{elem.description}</p>
+                        <div className={styles.address}>
+                          <p className={styles.adress}>{elem.address}</p>
+                        </div>
+                        <p className={styles.rating}>
+                          {getRating(elem.rating)}
+                        </p>
+                      </div>
+                    </div>
                   </Link>
                 );
               })}
