@@ -63,15 +63,6 @@
   margin-bottom: 5px;
 }
 
-/* // X-Small devices (portrait phones, less than 576px)
-
-
-
-
-
-// Medium devices (tablets, less than 992px)
-@media (max-width: 991.98px) { ... } */
-
 @media (max-width: 1250.98px) {
   .card {
     height: 300px;
