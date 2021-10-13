@@ -6,12 +6,14 @@ import Link from "next/link";
 import styles from "../styles/Header.module.css";
 import useAuth from "../hooks/useAuth";
 import SideBar from "./SideBar";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { user, login, logout } = useAuth();
   const [isAthenticated, setIsAthenticated] = useState(false);
   console.log("isAthenticated", isAthenticated);
   console.log(user);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -19,6 +21,11 @@ const Header = () => {
       setIsAthenticated(true);
     }
   }, [user]);
+
+  const handleClick = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <header suppressHydrationWarning className={styles.header}>
@@ -42,7 +49,7 @@ const Header = () => {
               </li>
             </>
           ) : (
-            <li onClick={() => logout()}>Sign out</li>
+            <li onClick={handleClick}>Sign out</li>
           )}
         </ul>
       </div>

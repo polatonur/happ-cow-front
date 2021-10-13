@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/SideBar.module.css";
 import Link from "next/link";
 import useAuth from "../hooks/useAuth";
-
+import { useRouter } from "next/router";
 const SideBar = () => {
   const [displaySideBar, setDisplaySideBar] = useState(false);
   const [isAthenticated, setIsAthenticated] = useState(false);
@@ -14,6 +14,14 @@ const SideBar = () => {
       setIsAthenticated(true);
     }
   }, [user]);
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    logout();
+    router.push("/");
+  };
+
   return (
     <div className={styles.sidebar}>
       {displaySideBar ? (
@@ -40,7 +48,7 @@ const SideBar = () => {
               </li>
             </>
           ) : (
-            <li onClick={() => logout()}>Sign out</li>
+            <li onClick={handleClick}>Sign out</li>
           )}
         </ol>
       </div>
