@@ -43,8 +43,7 @@ const CardResto = ({ restaurant }: Props) => {
         </div>
         <div className={styles.photo}>
           <Image
-            width={270}
-            height={176}
+            layout="fill"
             src={restaurant.thumbnail}
             alt={restaurant.name}
           ></Image>

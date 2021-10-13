@@ -57,3 +57,31 @@
   font-size: 18px;
   line-height: 24px;
 }
+@media (max-width: 991.98px) {
+  .reviews {
+    width: 97%;
+    padding-top: 100px;
+  }
+}
+@media (max-width: 767.98px) {
+  .reviews {
+    padding-top: 50px;
+  }
+  .reviews h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .writer {
+    height: 90px;
+  }
+
+  .writer .avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 575.98px) {
+}
+@media (max-width: 375.98px) {
+}

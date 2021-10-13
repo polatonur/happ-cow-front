@@ -14,25 +14,45 @@ const Carrousel = ({ photos }: Props) => {
       ref.current.scrollLeft += scrollOffset;
     }
   };
+
+  const isScrollable = () => {
+    if (ref.current) {
+      console.log(
+        "ref.current.scrollWidth > ref.current.clientWidth",
+        ref.current.scrollWidth,
+        ref.current.clientWidth
+      );
+
+      if (ref.current.scrollWidth > ref.current.clientWidth) {
+        return true;
+      } else return false;
+    } else return false;
+  };
+
   return (
     <div className={styles.carrousel}>
-      <div
-        onClick={() => handleClickScroll(-700)}
-        className={styles.arrow_left}
-      >
-        <CaretLeft size={38} />
-      </div>
-      <div
-        onClick={() => handleClickScroll(700)}
-        className={styles.arrow_right}
-      >
-        <CaretRight size={38} />
-      </div>
+      {isScrollable() && (
+        <>
+          {" "}
+          <div
+            onClick={() => handleClickScroll(-700)}
+            className={styles.arrow_left}
+          >
+            <CaretLeft size={38} />
+          </div>
+          <div
+            onClick={() => handleClickScroll(700)}
+            className={styles.arrow_right}
+          >
+            <CaretRight size={38} />
+          </div>
+        </>
+      )}
       <div ref={ref} className={styles.scrollable_carroussel}>
         {photos.map((elem, index) => {
           return (
             <div key={index} className={styles.card}>
-              <Image src={elem} width={240} height={240} alt="resto" />
+              <Image src={elem} layout="fill" alt="resto" />
             </div>
           );
         })}

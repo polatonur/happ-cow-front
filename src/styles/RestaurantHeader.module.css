@@ -80,7 +80,7 @@
   height: 70px;
   margin-bottom: -70px;
   bottom: 0;
-  z-index: 20;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,4 +98,29 @@
 }
 .click_message > div > span {
   margin-left: 10px;
+}
+
+@media (max-width: 575.98px) {
+  .add_favorite {
+    width: 40px;
+    height: 40px;
+  }
+  .rating_and_type {
+    display: flex;
+    flex-direction: column;
+  }
+  .resto_header {
+    height: 130px;
+  }
+  .resto_header span:first-child {
+    margin-bottom: 5px;
+  }
+  .resto_header h2 {
+    font-size: 1.7rem;
+  }
+}
+@media (max-width: 375.98px) {
+  .click_message > div {
+    width: 90vw;
+  }
 }

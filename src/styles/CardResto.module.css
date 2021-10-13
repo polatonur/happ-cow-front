@@ -32,6 +32,7 @@
 .photo {
   height: 176px;
   width: 100%;
+  position: relative;
   border-radius: 7px;
   background-color: var(--main-purple);
 }
@@ -60,4 +61,34 @@
   color: #777777;
   font-family: "Nunito Bold";
   margin-bottom: 5px;
+}
+
+/* // X-Small devices (portrait phones, less than 576px)
+
+
+
+
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) { ... } */
+
+@media (max-width: 1250.98px) {
+  .card {
+    height: 300px;
+    width: 30%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    height: 300px;
+    width: 48%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card {
+    height: 280px;
+    width: 90%;
+  }
 }

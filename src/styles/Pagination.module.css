@@ -44,3 +44,8 @@
   background-color: var(--main-green);
   font-size: 1.5rem;
 }
+@media (max-width: 575.98px) {
+  .pagination .pages .icon {
+    height: 20px;
+  }
+}

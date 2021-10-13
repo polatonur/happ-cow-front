@@ -22,7 +22,7 @@ const Map = ({ location, type }: Props) => {
   return (
     <div className={styles.map}>
       <MapContainer
-        style={{ height: 300, width: 300 }}
+        style={{ height: "100%", width: "100%" }}
         center={[location.lat, location.lng]}
         zoom={80}
         scrollWheelZoom={false}

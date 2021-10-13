@@ -38,3 +38,16 @@
 .nav_bar ul li:hover:after {
   transform: scaleX(1);
 }
+@media (max-width: 767.98px) {
+  .logo img {
+    height: 40px;
+    width: 160px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nav_bar ul {
+    display: none;
+  }
+}

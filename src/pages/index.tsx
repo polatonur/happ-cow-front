@@ -9,6 +9,7 @@ import Link from "next/link";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
 import CardResto from "../components/CardResto";
+import { useEffect, useState } from "react";
 
 const Restaurant = z.object({
   _id: z.string(),
@@ -37,6 +38,19 @@ type Props = {
   data: Data;
 };
 const HomePage = ({ data }: Props) => {
+  const [mobileResult, setMobileResult] = useState<Data>([]);
+  useEffect(() => {
+    if (window.innerWidth > 750 && window.innerWidth < 1250) {
+      setMobileResult(data.splice(0, 18));
+    } else {
+      setMobileResult([]);
+    }
+  }, [data]);
+
+  if (mobileResult.length > 0) {
+    data = mobileResult;
+  }
+
   return (
     <Layout>
       <div className={styles.home}>
@@ -73,6 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       "https://happy-cow-back.api.dotonur.dev/restaurants/best"
     );
     const data: Data = response.data;
+
     return {
       props: {
         data,

@@ -43,7 +43,11 @@ const RestaurantContact = ({
         <div className={styles.line_2}>
           <div className={styles.line_2_col_1}>
             <div>
-              <Clock size={48} color="#7a7a7a" />
+              <Clock
+                className={styles.contact_icon}
+                size={48}
+                color="#7a7a7a"
+              />
             </div>
             <div>
               <p>HOURS</p>
@@ -57,7 +61,11 @@ const RestaurantContact = ({
           </div>
           <div className={styles.line_2_col_2}>
             <div>
-              <Phone size={48} color="#7a7a7a" />
+              <Phone
+                className={styles.contact_icon}
+                size={48}
+                color="#7a7a7a"
+              />
             </div>
             <div>
               <p>CONTACT</p>
@@ -66,7 +74,11 @@ const RestaurantContact = ({
           </div>
           <div className={styles.line_2_col_3}>
             <div>
-              <MapPin size={48} color="#7a7a7a" />
+              <MapPin
+                className={styles.contact_icon}
+                size={48}
+                color="#7a7a7a"
+              />
             </div>
             <div>
               <p>FIND</p>

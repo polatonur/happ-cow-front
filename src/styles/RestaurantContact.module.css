@@ -49,3 +49,38 @@
   line-height: 29px;
   font-family: "Nunito";
 }
+@media (max-width: 1200.98px) {
+  .resto_contact_info {
+    flex-direction: column;
+  }
+  .col_1,
+  .col_2 {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 991.98px) {
+}
+
+@media (max-width: 767.98px) {
+  .contact_icon {
+    width: 30px;
+  }
+  .line_2 > div > div:first-child {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .line_2 {
+    flex-direction: column;
+  }
+  .line_2 > div {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  .line_3 p {
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+}

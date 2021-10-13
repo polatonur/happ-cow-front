@@ -18,7 +18,7 @@
   z-index: 5;
   background-color: rgb(206, 197, 197, 1);
   border-radius: 50%;
-  margin-top: 10%;
+  top: 100px;
 }
 .arrow_right {
   right: 0;
@@ -58,6 +58,7 @@
   margin-right: 0;
 }
 .photo {
+  position: relative;
   height: 276px;
   width: 100%;
   border-radius: 7px;
@@ -85,4 +86,27 @@
   color: #777777;
   font-family: "Nunito Bold";
   margin-bottom: 5px;
+}
+@media (max-width: 767.98px) {
+  .card {
+    height: 300px;
+    width: 270px;
+  }
+  .photo {
+    height: 70%;
+  }
+  .nearby_restos {
+    padding-top: 20px;
+  }
+  .nearby_restos h1 {
+    font-size: 25px;
+    margin: 20px 0;
+  }
+  /* .arrow_left,
+  .arrow_right {
+    margitop: 20%
+  } */
+}
+
+@media (max-width: 575.98px) {
 }

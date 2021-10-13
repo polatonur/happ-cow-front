@@ -78,9 +78,10 @@
   border: 1px solid grey;
   border-radius: 10px;
   display: flex;
-  width: 70%;
+  width: 800px;
   height: 300px;
   margin-top: 30px;
+  cursor: pointer;
 }
 .no_result {
   margin-top: 100px;
@@ -105,11 +106,19 @@
 }
 .col_2 {
   padding: 20px 30px;
+  overflow: hidden;
 }
 .col_2 h2 {
   color: var(--main-green);
   font-size: 24px;
-  margin-bottom: 30px;
+  line-height: 24px;
+  height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 20px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  white-space: nowrap;
 }
 .type {
   display: flex;
@@ -120,15 +129,17 @@
   width: max-content;
   height: 40px;
   padding: 5px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   background-color: lavender;
 }
 .address {
   margin: 20px 0;
   font-size: 1.3rem;
+  height: 2.4rem;
+  overflow: hidden;
 }
 .description {
-  margin-top: 20px;
+  margin-top: 10px;
   font-family: "Nunito";
   height: 3.6em;
   overflow: hidden;
@@ -137,4 +148,80 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
+}
+@media (max-width: 850.98px) {
+  .card {
+    width: 97%;
+  }
+}
+@media (max-width: 750.98px) {
+  .search_bar {
+    width: 95%;
+    height: 40px;
+  }
+  .search main {
+    margin-top: 50px;
+  }
+  .col_2 {
+    padding: 10px 20px;
+    overflow: hidden;
+  }
+  .col_2 h2 {
+    color: var(--main-green);
+    font-size: 20px;
+    line-height: 22px;
+    height: 22px;
+  }
+  .type {
+    height: 30px;
+  }
+  .address {
+    font-size: 1rem;
+    height: 2.4rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card {
+    height: 400px;
+    flex-direction: column;
+  }
+  .card > div {
+    width: 100%;
+  }
+  .card > div:first-child {
+    height: 60%;
+    border-radius: 10px 10px 0 0;
+  }
+  .card > div:last-child {
+    height: 40%;
+    padding: 10px 5px 5px;
+  }
+  .description {
+    display: none;
+  }
+  .search h1 {
+    font-size: 25px;
+  }
+  .address {
+    margin: 5px 0;
+  }
+  .col_2 h2 {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 375.98px) {
+  .search h1 {
+    font-size: 25px;
+  }
+  .card {
+    height: 300px;
+    flex-direction: column;
+  }
+  .card > div:first-child {
+    height: 50%;
+  }
+  .card > div:last-child {
+    height: 50%;
+  }
 }

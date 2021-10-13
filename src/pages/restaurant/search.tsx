@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import Layout from "../../components/Layout";
 import { Star, StarHalf } from "phosphor-react";
 import axios from "axios";
 import Pagination from "../../components/Pagination";
+import Link from "next/link";
 
 type Props = {
   queryText: string;
@@ -109,15 +111,15 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
     if (fullStar === rating) {
       let empityStar = 5 - fullStar;
       for (let i = 4; i > 4 - empityStar; i--) {
-        result[i] = <Star size={20} color="#7a7a7a" />;
+        result[i] = <Star key={i} size={20} color="#7a7a7a" />;
       }
     } else {
       let empityStar = 5 - fullStar - 1;
       for (let i = 4; i > 4 - empityStar; i--) {
-        result[i] = <Star size={20} color="#7a7a7a" />;
+        result[i] = <Star size={0} color="#7a7a7a" />;
       }
       result[Math.ceil(rating) - 1] = (
-        <StarHalf size={20} color="#ffcc00" weight="fill" />
+        <StarHalf size={20} key={30} color="#ffcc00" weight="fill" />
       );
     }
     return result;
@@ -128,6 +130,12 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
       handleClick();
       console.log("enter");
     }
+  };
+
+  const getSlug = (name: string) => {
+    const slug = name.toLowerCase().replace(/\s|'/g, "-").replace(/-+/g, "-");
+
+    return slug;
   };
   return (
     <Layout>
@@ -174,32 +182,46 @@ const Search = ({ queryText, data: { results, count } }: Props) => {
               </p>
               {searchResults.map((elem) => {
                 return (
-                  <div key={elem._id} className={styles.card}>
-                    <div className={styles.col_1}>
-                      <Image
-                        src={elem.thumbnail}
-                        layout="fill"
-                        alt={elem.name}
-                      />
-                    </div>
-                    <div className={styles.col_2}>
-                      <h2>{elem.name}</h2>
-                      <span className={styles.type}>
-                        <img
-                          src={getImageUri(elem.type)}
-                          alt={elem.type}
-                          width={20}
-                          height={20}
-                        />{" "}
-                        <span className={styles.type}>{elem.type}</span>
-                      </span>
-                      <p className={styles.description}>{elem.description}</p>
-                      <div className={styles.address}>
-                        <p className={styles.adress}>{elem.address}</p>
+                  <Link
+                    key={elem._id}
+                    href={{
+                      pathname: `/restaurant/${getSlug(elem.name)}`,
+                      query: { id: elem._id },
+                    }}
+                  >
+                    <>
+                      <div className={styles.card}>
+                        <div className={styles.col_1}>
+                          <Image
+                            src={elem.thumbnail}
+                            layout="fill"
+                            alt={elem.name}
+                          />
+                        </div>
+                        <div className={styles.col_2}>
+                          <h2>{elem.name}</h2>
+                          <span className={styles.type}>
+                            <img
+                              src={getImageUri(elem.type)}
+                              alt={elem.type}
+                              width={20}
+                              height={20}
+                            />{" "}
+                            <span className={styles.type}>{elem.type}</span>
+                          </span>
+                          <p className={styles.description}>
+                            {elem.description}
+                          </p>
+                          <div className={styles.address}>
+                            <p className={styles.adress}>{elem.address}</p>
+                          </div>
+                          <p className={styles.rating}>
+                            {getRating(elem.rating)}
+                          </p>
+                        </div>
                       </div>
-                      <p className={styles.rating}>{getRating(elem.rating)}</p>
-                    </div>
-                  </div>
+                    </>
+                  </Link>
                 );
               })}
             </div>

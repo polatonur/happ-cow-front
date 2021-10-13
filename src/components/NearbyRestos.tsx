@@ -31,30 +31,50 @@ const NearbyRestos = ({ nearbyList }: Props) => {
       return imageUri;
     }
   };
-  const ref = useRef<null | HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleClickScroll = (scrollOffset: number) => {
     if (ref.current) {
       ref.current.scrollLeft += scrollOffset;
     }
   };
+
+  const isScrollable = () => {
+    if (ref.current) {
+      console.log(
+        "ref.current.scrollWidth > ref.current.clientWidth",
+        ref.current.scrollWidth,
+        ref.current.clientWidth
+      );
+
+      if (ref.current.scrollWidth > ref.current.clientWidth) {
+        return true;
+      } else return false;
+    } else return false;
+  };
+
   return (
     <div className={styles.nearby_restos}>
       <h1>Nearby Restaurants</h1>
       <div className={styles.relative}>
         <div ref={ref} className={styles.carroussel}>
-          <div
-            onClick={() => handleClickScroll(-700)}
-            className={styles.arrow_left}
-          >
-            <CaretLeft size={38} />
-          </div>
-          <div
-            onClick={() => handleClickScroll(700)}
-            className={styles.arrow_right}
-          >
-            <CaretRight size={38} />
-          </div>
+          {isScrollable() && (
+            <>
+              {" "}
+              <div
+                onClick={() => handleClickScroll(-700)}
+                className={styles.arrow_left}
+              >
+                <CaretLeft size={38} />
+              </div>
+              <div
+                onClick={() => handleClickScroll(700)}
+                className={styles.arrow_right}
+              >
+                <CaretRight size={38} />
+              </div>
+            </>
+          )}
           {nearbyList.map((elem, index) => {
             return (
               <Link
@@ -67,8 +87,7 @@ const NearbyRestos = ({ nearbyList }: Props) => {
                 <div className={styles.card}>
                   <div className={styles.photo}>
                     <Image
-                      width={270}
-                      height={276}
+                      layout="fill"
                       src={elem.thumbnail}
                       alt={elem.name}
                     ></Image>
