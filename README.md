@@ -1,6 +1,82 @@
+<br />
+<h1 align="center">Used Tech Stacks</h1>
+<p align="center">
+    <img src="https://github.com/polatonur/readme_pics/blob/master/react.svg?raw=true" alt="Logo" width="80" height="80">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src=https://github.com/polatonur/readme_pics/blob/master/nextjs.svg?raw=true" alt="Logo" width="80" height="80"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/polatonur/readme_pics/blob/master/mongoDB.svg?raw=true" alt="Logo" width="180" height="80">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="https://github.com/polatonur/readme_pics/blob/master/Typescript.svg?raw=true" alt="Logo" width="180" height="80">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+<h3 align="center">HappyCow Clone</h3>
+
+  <p align="center">
+    <br />
+    <br />
+    <br />
+    <a href="https://happ-cow-front.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/polatonur/happ-cow-front/issues">Report Bug</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+<img src="https://github.com/polatonur/readme_pics/blob/master/happy_cow_main.png?raw=true" alt="happy cow" width="1200" height="1200">
+
+- List vegan-vegetarian restaurans in Paris
+- Search by name and filter results
+- Reusable pagination component
+- Responsive design
+  ![alt text](https://github.com/polatonur/readme_pics/blob/master/happy_cow_alert_responsive.gif?raw=true)
+- Alert messages
+  ![alt text](https://github.com/polatonur/readme_pics/blob/master/happy_cow_alert_messages.gif?raw=true)
+
+### Built With
+
+- React
+- Next
+- MongoDB
+- Typescript
+
+<!-- GETTING STARTED -->
+
 ## Getting Started
+
+### Installation
+
+Download App and install packages
+
+- yarn
+
+  ```sh
+  yarn
+  ```
+
+### Usage
 
 First, run the development server:
 
@@ -9,6 +85,12 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Contact
+
+Onur POLAT
+
+Project Link: [https://github.com/polatonur/gamepad-front](https://github.com/polatonur/gamepad-front/)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
