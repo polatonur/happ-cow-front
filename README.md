@@ -45,7 +45,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## About The Project
 
-<img src="https://github.com/polatonur/readme_pics/blob/master/happy_cow_main.png?raw=true" alt="happy cow" width="1200" height="1200">
+<img src="https://github.com/polatonur/readme_pics/blob/master/happy_cow_main.png?raw=true" alt="happy cow">
 
 - List vegan-vegetarian restaurans in Paris
 - Search by name and filter results
