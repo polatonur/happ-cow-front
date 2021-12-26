@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { Pencil } from "phosphor-react";
 import styles from "../../styles/Restaurant.module.css";
 import { Restaurant } from "../../pages/index";
@@ -30,14 +30,16 @@ export type ReviewType = {
   pros: string[];
   cons: string[];
 };
+
+interface Data {
+  result: Restaurant;
+  near: Array<NearRestos>;
+  reviews: Array<ReviewType>;
+  favList: Array<string>;
+  ok: string;
+}
 type Props = {
-  data: {
-    result: Restaurant;
-    near: Array<NearRestos>;
-    reviews: Array<ReviewType>;
-    favList: Array<string>;
-    ok: string;
-  };
+  data: Data;
 };
 const RestaurantPage = ({ data }: Props) => {
   const [restoFavCount, setRestoFavCount] = useState(data.result.favorite);
@@ -138,8 +140,39 @@ const RestaurantPage = ({ data }: Props) => {
 
 export default RestaurantPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.id;
+export const getStaticPaths = async () => {
+  try {
+    const res = await axios.get(
+      "https://happy-cow-back.api.dotonur.dev/restaurants/search"
+    );
+    // const data: Array<NearRestos> = res.data;
+    // const paths = data.map((restaurant) => ({
+    //   params: { id: restaurant._id },
+    // }));
+    const paths = [
+      { params: { id: "615ea8ac42640c5480db835d", slug: "veganie" } },
+      {
+        params: {
+          id: "615ea8ac42640c5480db835e",
+          slug: "hank-vegan-burger-archives",
+        },
+      },
+      { params: { id: "615ea8ac42640c5480db835f", slug: "happiz-monge" } },
+    ];
+
+    console.log(paths);
+
+    return { paths, fallback: false };
+  } catch (error: any) {
+    console.log(error.message);
+    return { fallback: false };
+  }
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id;
+  // const slug = params?.slug;
+
   try {
     const response = await axios.get(
       `https://happy-cow-back.api.dotonur.dev/restaurant/${id}`
@@ -164,3 +197,30 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const id = context.query.id;
+//   try {
+//     const response = await axios.get(
+//       `https://happy-cow-back.api.dotonur.dev/restaurant/${id}`
+//     );
+
+//     const data: {
+//       result: Restaurant;
+//       near: Array<NearRestos>;
+//       reviews: Array<ReviewType>;
+//       favList: Array<String>;
+//     } = response.data;
+//     // console.log("axios response", data.result);
+
+//     return {
+//       props: {
+//         data,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// };

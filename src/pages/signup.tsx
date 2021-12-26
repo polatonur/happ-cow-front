@@ -25,14 +25,11 @@ const Signup = () => {
     try {
       const response: {
         data: { id: string; token: string; username: string };
-      } = await axios.post(
-        "https://happy-cow-back.api.dotonur.dev/user/signup",
-        {
-          email,
-          password,
-          username,
-        }
-      );
+      } = await axios.post("https://happ-cow-onur.herokuapp.com/user/signup", {
+        email,
+        password,
+        username,
+      });
       Cookies.set("userId", response.data.id);
       Cookies.set("userToken", response.data.token);
       Cookies.set("userName", response.data.username);

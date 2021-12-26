@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
 import { z } from "zod";
 import chevronRight from "../assets/img/chevron-right.svg";
@@ -79,12 +79,12 @@ const HomePage = ({ data }: Props) => {
 
 export default HomePage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   console.log("1");
 
   try {
     const response = await axios.get(
-      "https://happy-cow-back.api.dotonur.dev/restaurants/best"
+      "https://happ-cow-onur.herokuapp.com/restaurants/best"
     );
     const data: Data = response.data;
 
@@ -99,3 +99,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 };
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   console.log("1");
+
+//   try {
+//     const response = await axios.get(
+//       "https://happy-cow-back.api.dotonur.dev/restaurants/best"
+//     );
+//     const data: Data = response.data;
+
+//     return {
+//       props: {
+//         data,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// };
