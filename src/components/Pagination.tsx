@@ -16,10 +16,7 @@ type Props = {
 };
 const Pagination = ({ count, activePage, setActivePage, perPage }: Props) => {
   let pages = [];
-  // console.log("pagination count avant====>", count);
   count = Math.ceil(count / perPage);
-  // console.log(perPage);
-  // console.log("pagination count apres====>", count);
 
   console.log();
   if (count === 1) {

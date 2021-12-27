@@ -8,8 +8,6 @@ type Props = {
   reviews: Array<ReviewType>;
 };
 const RestaurantReviews = ({ reviews }: Props) => {
-  console.log("reviews---->", reviews);
-
   return (
     <div className={styles.reviews}>
       <h1>
