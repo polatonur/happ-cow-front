@@ -60,7 +60,6 @@ const RestaurantHeader = ({
             },
           }
         );
-        console.log(response.data.message);
         setUserFavList(response.data.message);
         setRestoFavCount(response.data.count);
         setDisplayMessage(true);

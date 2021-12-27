@@ -45,7 +45,6 @@ const RestaurantPage = ({ data }: Props) => {
   const [restoFavCount, setRestoFavCount] = useState(data.result.favorite);
 
   const router = useRouter();
-  console.log("router==>", router);
 
   const [userFavList, setUserFavList] = useState(data.favList);
   const { user, login, logout } = useAuth();
