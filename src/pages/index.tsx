@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   try {
     const response = await axios.get(
-      "https://happ-cow-onur.herokuapp.com/restaurants/best"
+      "https://happy-cow-back.api.dotonur.dev/restaurants/best"
     );
     const data: Data = response.data;
 
